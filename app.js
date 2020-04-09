@@ -43,3 +43,4 @@ app.listen(app.get('puerto'), function () {
 // Se instala nodemon para autoreload del servidor, se configuro en package.json con "dev": "nodemon app.js", en scripts
 // Con morgan se visualiza en la consola las peticiones que se le hagan al servidor
 // Express static se configura con el pach del directirio public
+// Con el comando git push heroku master se pushea el proyecto a HEROKU, esta en el link https://app-mevn-julian141094.herokuapp.com/
