@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node app.js --exec",
     "dev": "nodemon app.js",
     "devbabel": "nodemon app.js --exec babel-node"
   },
@@ -24,7 +25,11 @@
     "morgan": "^1.10.0",
     "underscore": "^1.10.2",
     "vue": "^2.6.11",
-    "vue-axios": "^2.1.5"
+    "vue-axios": "^2.1.5",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
