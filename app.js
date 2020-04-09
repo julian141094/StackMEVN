@@ -5,6 +5,8 @@ const app = express();
 const morgan = require('morgan');
 // Cors configura el server para que no bloque las peticiones con otros dominios
 const cors = require('cors');
+// Retorna la ruta especifica
+const path = require('path');
 
 // morgan se usa como middleware
 app.use(morgan('tiny'));
@@ -17,6 +19,8 @@ app.use(express.json());
 //application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 
+// Para acceder al directorio public con la config del server
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Se configura la primera ruta, la base
 app.get('/', function (req, res) {
@@ -43,3 +47,4 @@ app.listen(app.get('puerto'), function () {
 // Tambien se corre con nodemon (Segun config) con npm run dev
 // Se instala nodemon para autoreload del servidor, se configuro en package.json con "dev": "nodemon app.js", en scripts
 // Con morgan se visualiza en la consola las peticiones que se le hagan al servidor
+// Express static se configura con el pach
