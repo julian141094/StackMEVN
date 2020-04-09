@@ -19,14 +19,17 @@ app.use(express.json());
 //application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 
-// Para acceder al directorio public con la config del server
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Se configura la primera ruta, la base
 app.get('/', function (req, res) {
     // Se retorna un hola mundo al cargar la ruta
     res.send('Hello World! Julian Avendaño');
 });
+
+// Middleware para Vue.js router modo history
+const history = require('connect-history-api-fallback');
+app.use(history());
+// Para acceder al directorio public con la config del server
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Se configura como variable global el puerto que le asigne el server o el 3000 sino
 app.set('puerto', process.env.PORT || 3000);
