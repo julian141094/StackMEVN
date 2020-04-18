@@ -6,8 +6,28 @@ import morgan from 'morgan'
 import cors from 'cors'
 // Retorna la ruta especifica
 import path from 'path'
+// Para utilizar Mongo
+import mongoose from 'mongoose'
 
 const app = express();
+
+// ------------ BASE DE DATOS --------------
+// Conexión local
+const uri = 'mongodb://localhost:27017/stackMEVN';
+// para poder usar conexiones con strings, entre otras cosas
+const options = {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+};
+
+// Or using promises
+mongoose.connect(uri, options).then(
+    /** ready to use. The `mongoose.connect()` promise resolves to mongoose instance. */
+    () => { console.log('Conectado a DB') },
+    /** handle initial connection error */
+    err => { err, console.log(err) }
+);
 
 // ------------- MIDDLEWARES ---------------
 app.use(morgan('tiny'));
@@ -22,6 +42,9 @@ app.use(express.urlencoded({ extended: true }))
 // app.get('/', function (req, res) {
 //     res.send('Hello World! Julian Avendaño');
 // });
+
+// Se usa la ruta creada para las notas
+app.use('/api', require('./routes/nota'))
 
 // Middleware para Vue.js router modo history (Debe estar antes del puerto)
 const history = require('connect-history-api-fallback');
